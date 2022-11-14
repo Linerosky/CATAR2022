@@ -3,13 +3,13 @@
 
   <head>
     <meta charset="utf-8">
-    <title>GPS Tracker</title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <title>CATAR 2022</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="PaginaDiseño.css">
 
   </head>
 
-  <body onload="table1();">
+  <body onload="table();">
 
     <header>
       <div>
@@ -26,31 +26,14 @@
 
     <script type="text/javascript">
 
-      function table1() {
+      function table() {
         const xhttp = new XMLHttpRequest();  //creando el objeto para trabajar.
         xhttp.onload = function () {
           window.data1 = this.responseText
-          data1 = JSON.parse(data1);
+          data = JSON.parse(data);
 
-          if (marker1 == null) {
-            window.markerActual1 = '<b> <center>' + 'Vehículo 1' + '</center> </b>' + '<hr>' + '<b> <center>' + data1.Fecha + '</center> </b>' + '<center>' + data1.Latitud + ', ' + data1.Longitud + '</center>' + '<b>';
-            marker1 = L.marker([data1.Latitud, data1.Longitud], { icon: redCarIcon }).addTo(map).bindPopup(window.markerActual1);
-            map.flyTo(marker1._latlng);
-          } else {
-            if (marker1._mapToAdd == null) {
-              marker1 = L.marker([data1.Latitud, data1.Longitud], { icon: redCarIcon }).addTo(map).bindPopup(window.markerActual1);
-            }
-            window.markerActual1 = '<b> <center>' + 'Vehículo 1' + '</center> </b>' + '<hr>' + '<b> <center>' + data1.Fecha + '</center> </b>' + '<center>' + data1.Latitud + ', ' + data1.Longitud + '</center>' + '<b>';
-            marker1.getPopup().setContent(window.markerActual1);
-            marker1.setLatLng([data1.Latitud, data1.Longitud]);
-            marker1.setIcon(redCarIcon);
-            if (estadoCenterMark1 == "Dejar de seguir el vehículo 1") {
-              map.flyTo(marker1._latlng);
-            }
-          }
           //Polilinea
-          linearray1.push([data1.Latitud, data1.Longitud]);
-          polyline1 = L.polyline(linearray1, { color: 'darkRed' }).addTo(map);
+          linearray.push([data.Latitud, data.Longitud]);
         }
 
         xhttp.open("GET", "datadb.php");  // documento que estamos llamando
@@ -59,7 +42,7 @@
       }
 
       setInterval(function () {   //creamos un intervalo para realizar el mismo request del archivo que genera la conexión con la base de datos
-          table1();
+          table();
           
       }, 1000); // Cada 1 segundo
     </script>
