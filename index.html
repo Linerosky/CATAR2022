@@ -30,27 +30,12 @@
       </nav>
     </div>
 
+    <script type="text/javascript" src="functions.js"></script>
     <script type="text/javascript">
 
-      function table() {
-        const xhttp = new XMLHttpRequest();  //creando el objeto para trabajar.
-        xhttp.onload = function () {
-          window.data1 = this.responseText
-          data = JSON.parse(data);
+      sendT();
+      console.log(data);
 
-          //Polilinea
-          linearray.push([data.Latitud, data.Longitud]);
-        }
-
-        xhttp.open("GET", "datadb.php");  // documento que estamos llamando
-        xhttp.send();
-
-      }
-
-      setInterval(function () {   //creamos un intervalo para realizar el mismo request del archivo que genera la conexión con la base de datos
-        table();
-
-      }, 1000); // Cada 1 segundo
     </script>
 
   </body>
