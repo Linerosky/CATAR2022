@@ -1,3 +1,4 @@
+<script type="text/javascript" src="functions.js"></script>
 function sendT() {
     var fechaini = "0";
     var horaini = "0";
